@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriPlan Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="assets/logo.png" alt="NutriPlan Pro Logo" class="h-10 mr-3">
+                <h1 class="text-2xl font-bold text-green-nutri">NutriPlan Pro</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button data-tab="accueil" class="tab-button active-tab">Accueil</button>
+                <button data-tab="recettes" class="tab-button">Recettes</button>
+                <button data-tab="sport" class="tab-button">Sport</button>
+                <button data-tab="coach-ia" class="tab-button">Coach IA</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-24">
+        <section id="accueil" class="tab-content">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold mb-4">Votre Coach Nutrition et Fitness Personnalisé</h2>
+                <p class="text-lg text-gray-600 mb-8">Atteignez vos objectifs de bien-être avec des plans sur mesure, des recettes délicieuses et un suivi par IA.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <i data-lucide="utensils" class="mx-auto text-orange-nutri h-12 w-12 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Recettes Gourmandes</h3>
+                    <p>Des milliers de recettes saines et savoureuses adaptées à vos besoins.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <i data-lucide="dumbbell" class="mx-auto text-orange-nutri h-12 w-12 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Workouts Personnalisés</h3>
+                    <p>Des programmes d'entraînement sur mesure, que vous soyez débutant ou expert.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <i data-lucide="brain-circuit" class="mx-auto text-orange-nutri h-12 w-12 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Coaching par IA</h3>
+                    <p>Un assistant virtuel disponible 24/7 pour répondre à vos questions et vous motiver.</p>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button id="start-button" class="bg-green-nutri text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition">Commencer</button>
+            </div>
+        </section>
+
+        <section id="recettes" class="tab-content hidden">
+            <h2 class="text-3xl font-bold mb-6 text-center">Recettes Équilibrées</h2>
+            <div id="recipe-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Les recettes seront injectées ici par JavaScript -->
+            </div>
+        </section>
+
+        <section id="sport" class="tab-content hidden">
+            <h2 class="text-3xl font-bold mb-6 text-center">Générateur de Programme d'Entraînement</h2>
+            <form id="workout-form" class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                <div class="mb-4">
+                    <label for="workout-type" class="block text-gray-700 font-semibold mb-2">Type d'entraînement</label>
+                    <select id="workout-type" class="w-full p-2 border rounded">
+                        <option>Cardio</option>
+                        <option>Musculation</option>
+                        <option>Yoga</option>
+                        <option>HIIT</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="duration" class="block text-gray-700 font-semibold mb-2">Durée (minutes)</label>
+                    <input type="number" id="duration" class="w-full p-2 border rounded" value="30">
+                </div>
+                <div class="mb-4">
+                    <label for="intensity" class="block text-gray-700 font-semibold mb-2">Intensité (1-5)</label>
+                    <input type="range" id="intensity" min="1" max="5" value="3" class="w-full">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2">Équipement disponible</label>
+                    <div class="flex space-x-4">
+                        <label><input type="checkbox" value="dumbbells"> Haltères</label>
+                        <label><input type="checkbox" value="resistance_bands"> Bandes de résistance</label>
+                        <label><input type="checkbox" value="bodyweight"> Poids du corps</label>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-orange-nutri text-white font-bold py-3 rounded-lg hover:bg-opacity-90 transition">Générer mon programme</button>
+            </form>
+            <div id="workout-output" class="mt-8 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md hidden"></div>
+        </section>
+
+        <section id="coach-ia" class="tab-content hidden">
+            <h2 class="text-3xl font-bold mb-6 text-center">Coach IA</h2>
+            <div class="max-w-2xl mx-auto bg-white p-4 rounded-lg shadow-md">
+                <div id="chat-history" class="h-96 overflow-y-auto mb-4 p-4 bg-gray-50 rounded">
+                    <div class="text-gray-500 text-center text-sm mb-4">Ceci est une simulation.</div>
+                    <div class="flex mb-4">
+                        <div class="bg-green-nutri text-white rounded-lg p-3 max-w-xs">
+                            <p>Bonjour ! Je suis votre coach IA. Comment puis-je vous aider aujourd'hui ?</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="loading-indicator" class="text-center mb-2 hidden">
+                    <span class="italic text-gray-500">L'IA est en train d'écrire...</span>
+                </div>
+                <div class="flex">
+                    <input type="text" id="user-input" class="flex-grow p-2 border rounded-l-lg" placeholder="Posez votre question...">
+                    <button id="send-btn" class="bg-orange-nutri text-white px-6 rounded-r-lg hover:bg-opacity-90 transition">Envoyer</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal pour les détails de la recette -->
+    <div id="recipe-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <i data-lucide="x" class="h-8 w-8"></i>
+            </button>
+            <div id="recipe-modal-content">
+                <!-- Le contenu sera injecté ici -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
