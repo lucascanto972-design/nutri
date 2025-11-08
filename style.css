@@ -1,0 +1,74 @@
+:root {
+    --color-primary-green: #10B981;
+    --color-accent-orange: #F97316;
+    --color-secondary-teal: #14B8A6;
+}
+
+.bg-green-nutri { background-color: var(--color-primary-green); }
+.text-green-nutri { color: var(--color-primary-green); }
+.bg-orange-nutri { background-color: var(--color-accent-orange); }
+.text-orange-nutri { color: var(--color-accent-orange); }
+.bg-teal-nutri { background-color: var(--color-secondary-teal); }
+.text-teal-nutri { color: var(--color-secondary-teal); }
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.active-tab {
+    border-bottom-color: var(--color-accent-orange);
+    color: var(--color-accent-orange);
+    font-weight: 600;
+}
+
+.recipe-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+#workout-form input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+#workout-form input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--color-accent-orange);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#workout-form input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--color-accent-orange);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* Styles pour la modale */
+#recipe-modal-content ul {
+    padding-left: 1.5rem;
+}
+#recipe-modal-content li {
+    margin-bottom: 0.5rem;
+}
